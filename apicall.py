@@ -10,7 +10,7 @@ api_endpoint = f"https://my-api.plantnet.org/v2/identify/all?api-key={API_KEY}"
 # image_path_1 = "../data/swierk.jpg"
 # image_data_1 = open(image_path_1, 'rb')
 
-image_path_2 = "data/im_04.png"
+image_path_2 = "data/699_epo_1.jpeg"
 # image_path_2 = "/home/bartek/Documents/mgr/flask-server/data/test.jpeg"
 # image_path_2 = "/home/bartek/Pictures/Screenshot from 2021-02-26 09-11-15.png"
 img = open(image_path_2, 'rb')
@@ -18,7 +18,7 @@ img = open(image_path_2, 'rb')
 # img = cv2.imread(image_path_2)
 
 data = {
-    'organs': ['leaf']
+    'organs': ['bark']
 }
 
 files = [

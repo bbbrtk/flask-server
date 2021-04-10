@@ -5,6 +5,7 @@ import requests
 import numpy as np
 import cv2
 import base64 
+from src.BarkNetModel import BarkNet
 
 app = Flask(__name__)
 IMG_PATH = 'data/test.jpeg'
@@ -22,7 +23,7 @@ def encode_and_save(request):
     # cv2.imwrite(IMG_PATH, img)
 
 
-def fancyprocessing(organ='leaf'):
+def plantnet(organ='leaf'):
     img = open(IMG_PATH, 'rb')
     print('image opened')
 
@@ -45,6 +46,13 @@ def fancyprocessing(organ='leaf'):
     
     return json_result
 
+def barknet():
+    f = 'data/699_epo_1.jpg'   
+    barkNet1 = BarkNet()
+    out = barkNet1.return_classification_array(f)
+    print(out)
+    return out
+
 
 @app.route('/api/test', methods=['POST'])
 def test():
@@ -52,10 +60,15 @@ def test():
     print('r', r)
 
     encode_and_save(r)
-    fromapi = fancyprocessing()
-    # pprint(fromapi)
 
-    response = {'message': fromapi
+    # fromapi = plantnet()
+    # pprint(fromapi)
+    # response = {'message': fromapi
+    #             }
+
+    frombark = barknet()
+
+    response = {'message': frombark
                 }
 
     response_pickled = jsonpickle.encode(response)
